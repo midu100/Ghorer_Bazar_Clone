@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@utility container {
+  margin-inline: auto;
+  /* padding-inline: 2rem; */
+}
+
+
+.NavItems{
+  position: relative;
+}
+
+.NavItems::after{
+  content: '';
+  width: 0;
+  height: 2px;
+  background: black;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  transition: all .4s linear;
+}
+.NavItems:hover::after{
+  width: 100%;
+}
+
+/* FilterItems */
+.FilterItems{
+  position: relative;
+  transition: all .4s linear;
+}
+.FilterItems::after{
+    content: '';
+  width: 0;
+  height: 1px;
+  background: #FC8934;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  transition: all .4s linear;
+}
+.FilterItems:hover::after{
+  width: 100%;
+}
+.FilterItems:hover{
+  color: #FC8934;
+}
+
+/* MoreProducts slider dots*/
+.slick-dots {
+    position: absolute;
+    bottom: -40px !important;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+/* FOOTER */
+.Footer{
+  position: relative;
+}
+.Footer::after{
+    content: '';
+  width: 0;
+  height: 1px;
+  background: #FC8934;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  transition: all .4s linear;
+}
+.Footer:hover::after{
+  width: 100%;
+}
