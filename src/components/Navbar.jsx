@@ -58,6 +58,9 @@ const Navbar = () => {
         path : "#"
     }
 ]
+
+   const localProduct = JSON.parse(localStorage.getItem("Name"))
+   console.log(localProduct)
   return (
     <>
       
@@ -75,7 +78,7 @@ const Navbar = () => {
 
                     <div className="Icons flex items-center gap-[20px]">
                         <Link className='text-[20px] text-[#FC8934]' to={'#'}><FaRegUser /></Link>
-                        <button onClick={()=>setShowCart(!showCart)} className='text-[25px] text-[#FC8934]'><AiOutlineShopping /></button>
+                        <button onClick={()=>setShowCart(!showCart)} className='text-[25px] text-[#FC8934] cursor-pointer'><AiOutlineShopping /></button>
                         
                     </div>
 

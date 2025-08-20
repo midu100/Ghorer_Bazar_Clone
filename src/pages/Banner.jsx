@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CommonHead from '../components/common/CommonHead'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import SingleProduct from '../components/common/SingleProduct'
 import axios from 'axios'
 import Pagination from '../components/Pagination'
@@ -76,11 +76,27 @@ const Banner = () => {
   const currentItems = products.slice(start, start + itemsPerPage);
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
+//   navigate
+const navigate = useNavigate()
+const handleShow = (productId)=>{
+    navigate(`/productdetails/${productId.id}`)
+    console.log(productId)
+}
+
+// add to cart
+const handleCart =(data)=>{
+    console.log(data)
+    let existId = JSON.parse(localStorage.getItem('Name')) || []
+    existId.push(data)
+    localStorage.setItem('Name',JSON.stringify(existId))
+
+}
+
 
   return (
     <>
        <section className='py-[20px]'>
-           
+           <CommonHead Title={"ALL PRODUCTS"} />
           <div className="container">
             <div className="row flex gap-[70px]">
                 <div className='w-[300px]'>
@@ -101,7 +117,7 @@ const Banner = () => {
                         <div className='flex gap-[35px] flex-wrap'>
                             {
                                 currentItems.map((item,i)=>(
-                                    <SingleProduct key={i} proImg={item.image} proName={item.title} proPrice={item.price}/>
+                                    <SingleProduct key={i} cartClick={()=>handleCart(item.id)} showDetails={()=>handleShow(item)} proImg={item.image} proName={item.title} proPrice={item.price}/>
                                 ))
                             }
                         </div>
