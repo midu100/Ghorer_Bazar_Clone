@@ -1,10 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { RxCross2 } from "react-icons/rx";
+import { Link } from 'react-router';
+import CheckoutPage from '../pages/CheckoutPage';
 
 const Cart = ({closeCart}) => {
      const [products, setProducts] = useState([]);
      const localProduct = JSON.parse(localStorage.getItem('Name'))
+
+     
 
       useEffect(() => {
     axios.get("https://fakestoreapi.com/products")
@@ -34,7 +38,7 @@ const Cart = ({closeCart}) => {
                     <RxCross2 onClick={closeCart} className='text-2xl font-semibold cursor-pointer'/>
                 </div>
 
-                <div className='mt-[30px] h-[640px] overflow-y-scroll'>
+                <div className='mt-[30px] h-[600px] overflow-y-scroll'>
                     {
                         addCart.map((item,i)=>(
                             <div key={i} className='flex justify-between items-center mt-[10px]'>
@@ -58,6 +62,11 @@ const Cart = ({closeCart}) => {
                <p className='text-[20px] font-poppins font-medium text-second'>Total</p>
                <p className='text-[20px] font-poppins font-medium text-second'>{totalPrice}$</p>
             </div>
+
+
+             <div className='mt-[10px] w-full flex justify-center'>
+               <Link to={'/checkout'} className='bg-[#FC8934] text-[#080808] text-[18px] font-semibold w-[90%] h-[60px] cursor-pointer rounded-[5px] flex justify-center items-center'>ক্যাশ অন ডেলিভারিতে অর্ডার করুন</Link>
+             </div>
 
 
              </div>

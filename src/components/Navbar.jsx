@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineShopping } from "react-icons/ai";
 import Cart from './Cart';
+import CheckoutPage from '../pages/CheckoutPage';
 
 const Navbar = () => {
     const[showCart,setShowCart]=useState(false)
@@ -89,6 +90,11 @@ const Navbar = () => {
                         showCart&&
                         <Cart closeCart={()=>setShowCart(!showCart)}/>
                     }
+                    {/* check */}
+                    {/* {
+                        showCart&&
+                        <CheckoutPage closeCheck={()=>setShowCart(!showCart)} />
+                    } */}
             </div>
         </nav>
                 

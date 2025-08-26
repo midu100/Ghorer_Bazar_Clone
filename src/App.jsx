@@ -6,6 +6,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import LayoutOne from './layout/LayoutOne'
 import Home from './pages/Home'
 import ProductDetails from './pages/ProductDetails'
+import CheckoutPage from './pages/CheckoutPage'
 
 function App() {
   const myRoute = createBrowserRouter(createRoutesFromElements(
@@ -13,6 +14,7 @@ function App() {
       <Route path='/' element={<LayoutOne />} >
         <Route index element={<Home />} />
         <Route path='/productdetails/:alu' element={<ProductDetails />} />
+        <Route path='/checkout' element={<CheckoutPage />} />
       </Route>
     </Route>
   ))

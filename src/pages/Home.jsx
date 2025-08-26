@@ -7,12 +7,10 @@ import AllProduct from './AllProduct'
 
 const Home = () => {
   return (
-    <div>
-         
+    <>
         <Banner />
         <AllProduct />
-        
-    </div>
+    </>
   )
 }
 
