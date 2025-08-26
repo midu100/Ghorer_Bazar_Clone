@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import CommonHead from '../components/common/CommonHead'
 import Footer from '../components/Footer'
 import About from '../pages/About'
+import MoreProduct from '../components/common/MoreProduct'
 
 const LayoutOne = () => {
   return (
@@ -12,6 +13,7 @@ const LayoutOne = () => {
     <Header />
     <Navbar />
       <Outlet />
+      <MoreProduct />
       <About />
       <Footer />
     </>

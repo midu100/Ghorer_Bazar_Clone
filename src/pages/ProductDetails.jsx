@@ -44,7 +44,6 @@ const ProductDetails = () => {
                         </div>
                     </div>
                 </div>
-                <MoreProduct />
             </div>
         </section>
     </>
