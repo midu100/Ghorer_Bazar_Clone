@@ -20,12 +20,12 @@ const Banner = () => {
 
   return (
     <>
-       <section className='mb-[90px]'>
+       <section  className='mb-[90px]'>
 
            <div className="slider-container">
                 <Slider {...settings}>
      
-                        <div>
+                        <div data-aos="zoom-out" data-aos-duration="2500" >
                             <img className='w-full' src={bannerImg} alt='bannerImg'/>
                         </div>
                     

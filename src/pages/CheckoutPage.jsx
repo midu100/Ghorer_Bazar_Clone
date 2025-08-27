@@ -1,23 +1,56 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { FaUser, FaPhoneAlt, FaMapMarkerAlt, FaTicketAlt, FaMoneyBillWave } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 import { useNavigate } from "react-router";
 
 const CheckoutPage = ({closeCheck}) => {
   const navigate = useNavigate()
    const [showCart,setShowCart]=useState(true)
+
+   const [products, setProducts] = useState([]);
+  const localProduct = JSON.parse(localStorage.getItem('Name'))
+  const [deliveryCharge, setDeliveryCharge] = useState(70)
+
+  console.log(deliveryCharge)
+
+
+  useEffect(() => {
+      axios.get("https://fakestoreapi.com/products")
+        .then((res) => {
+          const addCartPro =res.data.filter((item)=>{
+            return localProduct.includes(item.id)
+          })
+
+          setProducts(addCartPro);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, []);
+
+    const totalPrice = products.reduce((initial,total)=>{
+      return initial + total.price
+    },0)
+    console.log(totalPrice)
+
   return (
     <> 
          {
           showCart?
 
-        <div onClick={()=>setShowCart(!showCart)} className="min-h-screen bg-gray-100 flex justify-center items-center p-4">
-            <div onClick={closeCheck} className="black w-full h-screen bg-[#0000006f] fixed top-0 left-0 z-10"></div>
-          <div onClick={closeCheck}  className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-6 absolute top-[100px] z-20">
+        <div className="min-h-screen bg-gray-100 flex justify-center items-center p-4">
+            <div onClick={()=>setShowCart(!showCart)} className="black w-full h-screen bg-[#0000006f] fixed top-0 left-0 z-8"></div>
+          <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-6 absolute top-[100px] z-20">
             
             {/* Title */}
-            <h2 className="text-xl font-bold text-center text-gray-800 mb-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-[15px] font-bold  text-gray-800 ">
               ক্যাশ অন ডেলিভারিতে অর্ডার করতে আপনার তথ্য দিন
             </h2>
+            <RxCross2 onClick={()=>setShowCart(!showCart)} className="text-[22px] cursor-pointer"/>
+
+            </div>
 
             {/* Input Fields */}
             <div className="space-y-4">
@@ -42,15 +75,15 @@ const CheckoutPage = ({closeCheck}) => {
               <h3 className="font-semibold text-gray-700 mb-3">শিপিং মেথড</h3>
               <div className="space-y-2">
                 <label className="flex items-center border rounded-lg px-3 py-2 cursor-pointer">
-                  <input type="radio" name="shipping" className="mr-3" defaultChecked />
+                  <input onChange={(e)=>setDeliveryCharge(Number(e.target.value))} type="radio" name="shipping" value={'70'} className="mr-3" defaultChecked />
                   ঢাকা সিটির ভিতরে — <span className="ml-auto font-semibold">Tk 70</span>
                 </label>
                 <label className="flex items-center border rounded-lg px-3 py-2 cursor-pointer">
-                  <input type="radio" name="shipping" className="mr-3" />
-                  চট্টগ্রাম সিটির ভিতরে — <span className="ml-auto font-semibold">Tk 70</span>
+                  <input onChange={(e)=>setDeliveryCharge(Number(e.target.value))} type="radio" name="shipping" value={'60'} className="mr-3" />
+                  চট্টগ্রাম সিটির ভিতরে — <span className="ml-auto font-semibold">Tk 60</span>
                 </label>
                 <label className="flex items-center border rounded-lg px-3 py-2 cursor-pointer">
-                  <input type="radio" name="shipping" className="mr-3" />
+                  <input onChange={(e)=>setDeliveryCharge(Number(e.target.value))} type="radio" name="shipping" value={'130'} className="mr-3" />
                   ঢাকা এবং চট্টগ্রাম সিটির বাইরে — <span className="ml-auto font-semibold">Tk 130</span>
                 </label>
               </div>
@@ -67,21 +100,27 @@ const CheckoutPage = ({closeCheck}) => {
 
             {/* Product Summary */}
             <div className="mt-6 space-y-2 border-t pt-4">
-              <div className="flex justify-between">
-                <span>Sukkari Mufattal Malaki Dates 500 gm</span>
-                <span className="font-semibold">Tk 750</span>
+              <div>
+                {
+                  products.map((item,i)=>(
+                    <div className="flex justify-between">
+                      <span className="truncate w-[300px]">{item.title}</span>
+                      <span className="font-semibold">{`Tk ${Math.floor(item.price)}`}</span>
+                    </div>
+                  ))
+                }
               </div>
               <div className="flex justify-between text-gray-600">
                 <span>সাব টোটাল</span>
-                <span>Tk 750</span>
+                <span>Tk {Math.floor(totalPrice)}</span>
               </div>
               <div className="flex justify-between text-gray-600">
                 <span>ডেলিভারি চার্জ</span>
-                <span>Tk 70</span>
+                <span>{deliveryCharge}</span>
               </div>
               <div className="flex justify-between font-bold text-lg border-t pt-2">
                 <span>সর্বমোট</span>
-                <span>Tk 820</span>
+                <span>{`Tk ${Math.floor(totalPrice + deliveryCharge)}`}</span>
               </div>
             </div>
 

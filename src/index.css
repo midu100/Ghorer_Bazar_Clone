@@ -75,3 +75,41 @@
 .Footer:hover::after{
   width: 100%;
 }
+
+/* details page */
+.BTN1{
+  transition: all .4s linear;
+}
+.BTN1:hover{
+  background: #FC8934;
+  color: black;
+  cursor: pointer;
+}
+
+.BTN2{
+  transition: all .4s linear;
+}
+.BTN2:hover{
+  background: #000;
+  color: #FC8934;
+  cursor: pointer;
+}
+
+.BTN3{
+  transition: all .4s linear;
+}
+.BTN3:hover{
+  background: #000;
+  color: #b7e510;
+  cursor: pointer;
+}
+
+.BTN4{
+  transition: all .4s linear;
+}
+.BTN4:hover{
+  background: #FC8934;
+  color: black;
+  cursor: pointer;
+}
+

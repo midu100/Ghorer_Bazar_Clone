@@ -21,7 +21,7 @@ const Cart = ({closeCart}) => {
   }, []);
 
   const addCart = products.filter((item)=>{
-      return localProduct.includes(item.id)
+      return localProduct?.includes(item.id)
   })
 
   const totalPrice = addCart.reduce((initial,item)=>{
@@ -40,16 +40,16 @@ const Cart = ({closeCart}) => {
 
                 <div className='mt-[30px] h-[600px] overflow-y-scroll'>
                     {
-                        addCart.map((item,i)=>(
+                        addCart?.map((item,i)=>(
                             <div key={i} className='flex justify-between items-center mt-[10px]'>
                                 <div className="flex gap-[10px] items-center">
                                     <div className="Img w-[50px] overflow-hidden">
-                                    <img src={item.image} alt='img' />
+                                    <img src={item?.image} alt='img' />
                                     </div>
-                                    <p className='text-[18px] font-medium truncate w-[200px]'>{item.title}</p>
+                                    <p className='text-[18px] font-medium truncate w-[200px]'>{item?.title}</p>
                                 </div>
 
-                                <p className='text-[18px] font-medium'>{item.price}</p>
+                                <p className='text-[18px] font-medium'>{item?.price}</p>
                             </div>
                         ))
                     }
@@ -60,7 +60,7 @@ const Cart = ({closeCart}) => {
 
                 <div className='flex justify-between items-center '>
                <p className='text-[20px] font-poppins font-medium text-second'>Total</p>
-               <p className='text-[20px] font-poppins font-medium text-second'>{totalPrice}$</p>
+               <p className='text-[20px] font-poppins font-medium text-second'>{Math.floor(totalPrice)}Tk</p>
             </div>
 
 

@@ -11,7 +11,7 @@ const Footer = () => {
       <section className='bg-[#FC8934] py-[50px]'>
         <div className="container">
             <div className="row flex justify-between">
-                <div className='flex gap-[20px]'>
+                <div  className='flex gap-[20px]'>
                     <Link className='text-[30px] hover:text-[#fff] duration-400' to={'#'}><FaFacebookF /></Link>
                     <Link className='text-[30px] hover:text-[#fff] duration-400' to={'#'}><FaInstagram /></Link>
                     <Link className='text-[30px] hover:text-[#fff] duration-400' to={'#'}><FaWhatsapp /></Link>

@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router'
 import SingleProduct from '../components/common/SingleProduct'
 import axios from 'axios'
 import Pagination from '../components/Pagination'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../Slice'
 
 const AllProduct = () => {
         const navItems = [
@@ -84,11 +86,13 @@ const handleShow = (productId)=>{
 }
 
 // add to cart
+const dispatch = useDispatch()
 const handleCart =(data)=>{
     console.log(data)
     let existId = JSON.parse(localStorage.getItem('Name')) || []
     existId.push(data)
     localStorage.setItem('Name',JSON.stringify(existId))
+    dispatch(addToCart(existId))
 
 }
 
@@ -106,7 +110,7 @@ const handleCart =(data)=>{
                             {
                                 navItems.map((item,i)=>(
 
-                                    <li key={i}><Link className='FilterItems text-[22px] text-[#6b6565] font-normal' to={'#'}>{item.Name}</Link></li>
+                                    <li data-aos="fade-up" data-aos-duration="2500" key={i}><Link className='FilterItems text-[22px] text-[#6b6565] font-normal' to={'#'}>{item.Name}</Link></li>
                                 ))
                             }
                        </ul>
@@ -117,7 +121,7 @@ const handleCart =(data)=>{
                         <div className='flex gap-[35px] flex-wrap'>
                             {
                                 currentItems.map((item,i)=>(
-                                    <SingleProduct key={i} cartClick={()=>handleCart(item.id)} showDetails={()=>handleShow(item)} proImg={item.image} proName={item.title} proPrice={item.price}/>
+                                    <SingleProduct data-aos="fade-up" data-aos-duration="2500" key={i} cartClick={()=>handleCart(item.id)} showDetails={()=>handleShow(item)} proImg={item.image} proName={item.title} proPrice={item.price}/>
                                 ))
                             }
                         </div>

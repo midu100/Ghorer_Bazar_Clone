@@ -6,6 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import { AiOutlineShopping } from "react-icons/ai";
 import Cart from './Cart';
 import CheckoutPage from '../pages/CheckoutPage';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     const[showCart,setShowCart]=useState(false)
@@ -60,7 +61,8 @@ const Navbar = () => {
     }
 ]
 
-   const localProduct = JSON.parse(localStorage.getItem("Name"))
+//    const localProduct = JSON.parse(localStorage.getItem("Name"))
+   const localProduct = useSelector((state)=>state.products.value)
    console.log(localProduct)
   return (
     <>
@@ -79,7 +81,10 @@ const Navbar = () => {
 
                     <div className="Icons flex items-center gap-[20px]">
                         <Link className='text-[20px] text-[#FC8934]' to={'#'}><FaRegUser /></Link>
-                        <button onClick={()=>setShowCart(!showCart)} className='text-[25px] text-[#FC8934] cursor-pointer'><AiOutlineShopping /></button>
+                        <button onClick={()=>setShowCart(!showCart)} className='text-[25px] text-[#FC8934] cursor-pointer relative'>
+                            <AiOutlineShopping />
+                            <span className='w-[20px] h-[20px] rounded-full flex justify-center items-center bg-[#FC8934] text-[15px] text-[#fff] absolute top-[-5px] right-[-8px]'>{localProduct ? localProduct.length : 0}</span>
+                        </button>
                         
                     </div>
 
@@ -90,11 +95,6 @@ const Navbar = () => {
                         showCart&&
                         <Cart closeCart={()=>setShowCart(!showCart)}/>
                     }
-                    {/* check */}
-                    {/* {
-                        showCart&&
-                        <CheckoutPage closeCheck={()=>setShowCart(!showCart)} />
-                    } */}
             </div>
         </nav>
                 
