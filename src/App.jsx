@@ -7,6 +7,9 @@ import LayoutOne from './layout/LayoutOne'
 import Home from './pages/Home'
 import ProductDetails from './pages/ProductDetails'
 import CheckoutPage from './pages/CheckoutPage'
+import SignUpPage from './pages/SignUpPage'
+import app from './Firebase.config'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   const myRoute = createBrowserRouter(createRoutesFromElements(
@@ -16,12 +19,15 @@ function App() {
         <Route path='/productdetails/:alu' element={<ProductDetails />} />
         <Route path='/checkout' element={<CheckoutPage />} />
       </Route>
+
+      <Route path='/registration' element={<SignUpPage />} />
     </Route>
   ))
 
   return (
     <>
      <RouterProvider router={myRoute} />
+     <ToastContainer />
       
     </>
   )

@@ -80,7 +80,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="Icons flex items-center gap-[20px]">
-                        <Link className='text-[20px] text-[#FC8934]' to={'#'}><FaRegUser /></Link>
+                        <Link className='text-[20px] text-[#FC8934]' to={'/registration'}><FaRegUser /></Link>
                         <button onClick={()=>setShowCart(!showCart)} className='text-[25px] text-[#FC8934] cursor-pointer relative'>
                             <AiOutlineShopping />
                             <span className='w-[20px] h-[20px] rounded-full flex justify-center items-center bg-[#FC8934] text-[15px] text-[#fff] absolute top-[-5px] right-[-8px]'>{localProduct ? localProduct.length : 0}</span>
